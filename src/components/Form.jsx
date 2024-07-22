@@ -1,15 +1,22 @@
 import React from 'react'
 
-function Form(){
+function Form({setTodos}){
     const handleSubmit = (e) =>{
-        e.preventDefault()
+        e.preventDefault();
+        const value = e.target.todo.value;
+        setTodos((prevTodos)=>[...prevTodos, {
+            title: value,
+            id:crypto.randomUUID(),
+            is_completed: false
+        }])
         e.target.reset();
+
 
 
     }
 
     return (
-        <form className='form self-center my-4 flex w-[22%]' onSubmit={handleSubmit}>
+        <form className='form self-center my-4 flex w-[35%]' onSubmit={handleSubmit}>
             <label htmlFor='todo' className='w-[170%]'>
                 <input className='bg-[#1F2937] p-[10px] rounded-lg w-[100%] text-white'
                 id='todo'

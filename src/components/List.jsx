@@ -2,7 +2,7 @@ import React from 'react'
 
 const List = ({todos}) => {
   return (
-   <ol className='list self-center '>
+   <ol className='list self-center w-[35%] '>
     {
         todos && todos.length > 0 ? (
             todos?.map((item,index)=>{
@@ -11,7 +11,7 @@ const List = ({todos}) => {
             })
 
         ) : (
-            <p className='text-white self-center text-sm'>Seems lonely in here, what are you up to?</p>
+            <p className='text-white self-center text-[22px]'>Seems lonely in here, what are you up to?</p>
         )
     }
    
@@ -25,27 +25,23 @@ export default List;
 
 const Item = ({item}) => {
   return (
-    <li id={item?.id} className="item">
-      <button className="items_left">
-        <svg>
-          <circle cx="11.998" cy="11.998" fillRule="nonzero" r="9.998" />
-        </svg>
-        <p>{item?.title}</p>
+    <li id={item?.id} className=" group flex items-center justify-between p-4 bg-black border-white border mb-2 rounded-lg shadow hover:bg-gray-50 transition duration-300 text-black">
+      <button className="flex  items-center text-left w-full">
+       
+        <p className={`text-lg group-hover:text-black transition duration-300 ${item?.is_completed ? 'line-through text-gray-500' : 'text-white'}`}>
+          {item?.title}
+        </p>
       </button>
-      <div className="items_right">
-        <button>
+      <div className="flex space-x-2">
+        <button className="text-blue-500 hover:underline text-sm">
           <span className="visually-hidden">Edit</span>
-          <svg>
-            <path d="" />
-          </svg>
+         
         </button>
-        <button>
+        <button className="text-red-500 hover:underline text-sm">
           <span className="visually-hidden">Delete</span>
-          <svg>
-            <path d="" />
-          </svg>
+         
         </button>
       </div>
     </li>
-  )
-}
+  );
+};
