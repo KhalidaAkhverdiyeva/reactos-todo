@@ -10,29 +10,25 @@ import React from 'react';
 function App() {
   const [todos, setTodos] = React.useState([
     {
-      title: 'Destroy the planet',
-      id: crypto.randomUUID(),
-      is_completed: false
-    },
-    {
-      title: "Smell the flowers",
-      id: crypto.randomUUID(),
+      title: 'bezi seyler',
+      id: crypto.randomUUID,
       is_completed: true,
-
-    },
-    {
-      title: 'another taskos',
-      id: crypto.randomUUID(),
-      is_completed: false
-
     }
   ]);
+  const completed__todos = todos.filter((task) => task.is_completed === true).length;
+  const total__todos = todos.length;
+
+  const updateTodo = (id, isCompleted) => {
+    setTodos(todos.map(todo =>
+      todo.id === id ? { ...todo, is_completed: isCompleted } : todo
+    ));
+  };
   return (
     <div className='wrapper w-[1300px] h-full flex flex-col '>
       < Header />
-      < Hero completed__todos={0} total__todos={0} />
+      < Hero completed__todos={completed__todos} total__todos={total__todos} />
       < Form setTodos={setTodos} />
-      < List todos={todos} />
+      < List todos={todos} updateTodo={updateTodo} />
 
     </div>
   );
